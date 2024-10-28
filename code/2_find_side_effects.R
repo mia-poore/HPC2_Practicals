@@ -2,27 +2,18 @@
 library(tidyverse)
 library(tidytext)
 
-args = commandArgs(trailingOnly = TRUE)
-
 #read in data
 dta <- read_tsv('../data/original/drugLibTrain_raw.tsv')
 
 #define arguments
+args = commandArgs(trailingOnly = TRUE)
 CONDITION = args[1]
 
-
-#top <- dta %>%
-#  	count(condition, sort=TRUE) %>%
-#  	head(40) %>%
-#  	select(condition)
-
-#CONDITION <- top$condition[CONDITION_IDX]
-
-#describe
+#get tokens
 tokens <-dta %>% 
         filter(condition==CONDITION) %>%
         unnest_tokens(word, sideEffectsReview) %>% #tokenize reviews
-        anti_join(get_stopwords()) %>% #remove stopwords
+        anti_join(stop_words) %>% #remove stopwords
         filter(! word %in% c('effect','effects','side',
                              'experienced')) %>%
 	filter(str_detect(word, "[a-z]"))
@@ -54,14 +45,14 @@ bigrams <- bigrams %>%
 
 #find most common bigrams for negative side effects
 negative_bigrams <- bigrams %>%
-  filter(rating<4) %>%
-  count(bigram, sort=TRUE) %>% #count instances of each word
+  filter(rating<5) %>%
+  count(bigram, sort=TRUE) %>% #count instances
   head(10) #top 10
 
 #find most common bigrams for positive side effects
 positive_bigrams <- bigrams %>%
-  filter(rating>7) %>%
-  count(bigram, sort=TRUE) %>% #count instances of each word
+  filter(rating>=5) %>%
+  count(bigram, sort=TRUE) %>% #count instances
   head(10) #top 10
 
 results <- tibble('rank' = c(1:10),
