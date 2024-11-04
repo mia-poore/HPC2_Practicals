@@ -8,6 +8,6 @@ dta <- read_tsv('../data/original/drugLibTrain_raw.tsv')
 
 dta %>% 
   count(condition, sort=TRUE) %>%
-  head(10) %>%
+  head(4) %>%
   select(condition) %>%
   write_csv('../data/derived/top_conditions.csv')
