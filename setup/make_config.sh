@@ -1,5 +1,7 @@
 #! usr/bin/bash
 
+mkdir -p ../data/derived/
+
 Rscript 0_get_conditions.R
 
 echo "CONDITIONS:" > ../config.yml
