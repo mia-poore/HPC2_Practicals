@@ -1,26 +1,5 @@
 # conda-hpc-snakemake-example
 
-## Notes from meeting
-
-Files needed:
-
-- Snakefile
-- script1.R
-- script2.sh
-- environment.yaml
-- slurm_config.json
-- data/input.csv
-
-Modules needed
-
-- mamba
-- git
-
-Additional points
-
-- ssh keys
-- .bashrc files
-- file permissions
 -------------------------------
 
 ## Practical instructions
@@ -60,18 +39,44 @@ Look at `Snakefile`: this is a snakemake pipeline for the analysis.
 1. Compare this to the commands in `run_analysis.sh`. What commands aren't executed by the Snakefile?
 2. Execute the Snakefile with a dry run (`snakemake -n`) -- what error do you see?
 3. *something about using setup/make_config.sh to create config. Could we make it so that it doesn't run / there is an error they need to fix?*
-4. **final step to run snakemake pipeline on HPC -- need submission script for snakemake?**
+4. try submitting snakemake to hpc - look at previous hpc submission scripts and try to fix the parameters for snakemake.
+**final step to run snakemake pipeline on HPC -- need submission script for snakemake?**
 
+### 4. Update Git
+
+If you're making changes, consider raising an Issue in your forked github repository, creating a new branch, checking out that new branch and committing and pushing the changes there, then making a pull request.
+
+Update the README.md to explain how to run your pipeline in different environments.
+
+### 4. Extensions
+
+1. try submitting in tmux for longer running jobs
+2. **....**
 ---------------------------------------- 
 
-## Notes from meeting continued
+## Notes from meeting
 
-8. try running scripts / snakemake without submitting
-9. try submitting snakemake to hpc - look at previous hpc submission scripts and try to fix the parameters for snakemake. Note if you're making changes, consider raising an Issue in your forked github repository, creating a new branch, checking out that new branch and committing and pushing the changes there, then making a pull request.
-10. try submitting in tmux for longer running jobs
-11. Update the README.md to explain how to run your pipeline in different environments.
+Files needed:
 
-Formative
+- Snakefile
+- script1.R
+- script2.sh
+- environment.yaml
+- slurm_config.json
+- data/input.csv
+
+Modules needed
+
+- mamba
+- git
+
+Additional points
+
+- ssh keys
+- .bashrc files
+- file permissions
+
+## Formative
 
 1. Migrate current pipeline to run on HPC
 2. Can you parallelise the processing of the input files in a HPC batch array in this new pipeline configuration? Think about strategy here. How could `pre-pipeline-batching.R` help?
