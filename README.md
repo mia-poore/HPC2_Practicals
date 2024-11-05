@@ -48,13 +48,13 @@ Specifically, it:
 
 ### 2. Run the analysis on HPC
 1. Look at `run_analysis.sh`: this is a sumbission script to run the pipeline on BlueCrystal. It does not make use of Snakemake.
-    i. Add comments to the submission script, describing what each step does
-    ii. Submit the submission script to the jobque
-    iii. Add, commit and push the results to git so that you can view the figures locally
+    * Add comments to the submission script, describing what each step does
+    * Submit the submission script to the jobque
+    * Add, commit and push the results to git so that you can view the figures locally
 2. Look at `Snakefile`: this is a snakemake pipeline for the analysis.
-    i. Compare this to the commands in `run_analysis.sh`. What commands aren't executed by the Snakefile?
-    ii. Execute the Snakefile with a dry run (`snakemake -n`) -- what error do you see?
-    iii. *something about using setup/make_config.sh to create config. Could we make it so that it doesn't run / there is an error they need to fix?*
+    * Compare this to the commands in `run_analysis.sh`. What commands aren't executed by the Snakefile?
+    * Execute the Snakefile with a dry run (`snakemake -n`) -- what error do you see?
+    * *something about using setup/make_config.sh to create config. Could we make it so that it doesn't run / there is an error they need to fix?*
 3. ** final step to run snakemake pipeline on HPC -- need submission script for snakemake? **
 
 ---------------------------------------- 
