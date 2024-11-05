@@ -47,15 +47,20 @@ Specifically, it:
 3. Activate the conda environment
 
 ### 2. Run the analysis on HPC
-1. Look at `run_analysis.sh`: this is a sumbission script to run the pipeline on BlueCrystal. It does not make use of Snakemake.
-    * Add comments to the submission script, describing what each step does
-    * Submit the submission script to the jobque
-    * Add, commit and push the results to git so that you can view the figures locally
-2. Look at `Snakefile`: this is a snakemake pipeline for the analysis.
-    * Compare this to the commands in `run_analysis.sh`. What commands aren't executed by the Snakefile?
-    * Execute the Snakefile with a dry run (`snakemake -n`) -- what error do you see?
-    * *something about using setup/make_config.sh to create config. Could we make it so that it doesn't run / there is an error they need to fix?*
-3. ** final step to run snakemake pipeline on HPC -- need submission script for snakemake? **
+
+Look at `run_analysis.sh`: this is a sumbission script to run the pipeline on BlueCrystal. It does not make use of Snakemake.
+
+1. Add comments to the submission script, describing what each step does
+2. Submit the submission script to the jobque
+3. Add, commit and push the results to git so that you can view the figures locally
+
+### 3. Snakemake on HPC
+
+Look at `Snakefile`: this is a snakemake pipeline for the analysis.
+1. Compare this to the commands in `run_analysis.sh`. What commands aren't executed by the Snakefile?
+2. Execute the Snakefile with a dry run (`snakemake -n`) -- what error do you see?
+3. *something about using setup/make_config.sh to create config. Could we make it so that it doesn't run / there is an error they need to fix?*
+4. **final step to run snakemake pipeline on HPC -- need submission script for snakemake?**
 
 ---------------------------------------- 
 
