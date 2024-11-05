@@ -14,17 +14,24 @@ source ~/initMamba.sh
 
 mamba activate ahds_week9
 
+cd ~/ahds_practical/conda-hpc-snakemake-example/
+
+mkdir -p results
+mkdir -p data/derived/
+
+cd setup/
+
+Rscript 0_get_conditions.R
+
 echo 'Starting analysis'
 
-cd ~/ahds_practical/conda-hpc-snakemake-example/code/
-
-Rscript 1_get_unique_conditions.R
+cd ../code/
 
 {       read
         while IFS=, read -r line;
         do
-                Rscript 2_find_side_effects.R "${line}"
-                Rscript 3_plot_wordcloud.R "${line}"
+                Rscript 1_find_side_effects.R "${line}"
+                Rscript 2_plot_wordcloud.R "${line}"
         done
 
 }< ../data/derived/top_conditions.csv
