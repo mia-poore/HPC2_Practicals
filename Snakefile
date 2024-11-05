@@ -24,7 +24,7 @@ for condition in config["CONDITIONS"]:
 		output:
 			f"data/derived/word_rankings_{condition}.csv"
 		shell:
-			f"Rscript code/2_find_side_effects.R {condition}"
+			f"Rscript code/1_find_side_effects.R {condition}"
 
 
 for condition in config["CONDITIONS"]:
@@ -37,7 +37,7 @@ for condition in config["CONDITIONS"]:
 			f"results/wordcloud_{condition}.png",
 			f"results/bigramcloud_{condition}.png"
 		shell:
-			f"Rscript code/3_plot_wordcloud.R {condition}"
+			f"Rscript code/2_plot_wordcloud.R {condition}"
 
 rule clean:
 	"Clean up"
