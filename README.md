@@ -30,7 +30,7 @@ The pipeline in this repository analyses data collected from online reviews of p
 Specifically, it:
 1. Identifies the 4 most common conditions experienced by people writing reviews
 2. Finds words and bigrams used when describing the side effects of medications prescribed for each condition
-3. Plots wordclouds to visualise the most common words and bigrams used to describe the side effects associated with medications prescribed for each condition
+3. Plots wordclouds to visualise the most common words and bigrams used to describe the side effects associated with these medications
 
 ### 1. Setting up Git and Conda on HPC
 
