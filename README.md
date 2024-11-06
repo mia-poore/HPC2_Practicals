@@ -11,7 +11,9 @@ Specifically, it:
 2. Finds words and bigrams used when describing the side effects of medications prescribed for each condition
 3. Plots wordclouds to visualise the most common words and bigrams used to describe the side effects associated with these medications
 
-### 1. Setting up Git and Conda on HPC
+## Practical 1: Conda on HPC
+
+### Setting up Git and Conda
 
 #### Git
 1. Log into bc4
@@ -22,33 +24,45 @@ Specifically, it:
    
 #### Conda / Mamba
 1. Follow ACRC's instructions to install mamba on your work partition
-2. Navigate to cloned repository ad create a conda environment from environment.yml
+2. Navigate to cloned repository and create a conda environment from environment.yml
 3. Activate the conda environment
 
-### 2. Run the analysis on HPC
+### Run analysis using a conda environment
 
-Look at `run_analysis.sh`: this is a sumbission script to run the pipeline on BlueCrystal. It does not make use of Snakemake.
+Look at `practical_1/run_analysis.sh`: this is a sumbission script to run the pipeline on BlueCrystal. It does not make use of Snakemake.
 
 1. Add comments to the submission script, describing what each step does
 2. Submit the submission script to the jobque
 3. Add, commit and push the results to git so that you can view the figures locally
+4. **extension** Edit the submission script to run as an array job
 
-### 3. Snakemake on HPC
+## Practical 2: Snakemake on HPC
 
-Look at `Snakefile`: this is a snakemake pipeline for the analysis.
+You will now re-run the analysis using Snakemake. First, navigate to the root directory and clear all derived data and results:
+
+`rm -r ./results/`
+`rm -r ./data/derived/`
+
+### Convert the bash pipeline to snakemake
+
+Look at `practical_2/Snakefile`: this is a snakemake pipeline for the analysis.
 1. Compare this to the commands in `run_analysis.sh`. What commands aren't executed by the Snakefile?
-2. Execute the Snakefile with a dry run (`snakemake -n`) -- what error do you see?
+2. Execute snakemake with a dry run (`snakemake -n`) -- what error(s) do you see?
 3. *something about using setup/make_config.sh to create config. Could we make it so that it doesn't run / there is an error they need to fix?*
-4. try submitting snakemake to hpc - look at previous hpc submission scripts and try to fix the parameters for snakemake.
-**final step to run snakemake pipeline on HPC -- need submission script for snakemake?**
+4. Execute snakemake with a dry run again -- are all errors fixed? When ready, run on login node as a single job (`snakemake -j1`)
 
-### 4. Update Git
+### Submit snakemake to the job queue
+
+Look at the submission scripts from practical 1. Try to adapt them for snakemake. Hint: `srun` 
+**...**
+
+## Things to consider
 
 If you're making changes, consider raising an Issue in your forked github repository, creating a new branch, checking out that new branch and committing and pushing the changes there, then making a pull request.
 
 Update the README.md to explain how to run your pipeline in different environments.
 
-### 4. Extensions
+## Extensions
 
 1. try submitting in tmux for longer running jobs
 2. **....**
