@@ -2,13 +2,13 @@
 
 mkdir -p ../data/derived/
 
-Rscript 0_get_conditions.R
+Rscript ../setup/0_get_conditions.R
 
-echo "CONDITIONS:" > ../config.yml
+echo "CONDITIONS:" > config.yml
 {       read
         while IFS=, read -r line;
 	do
-		printf "  - ${line}\n">>../config.yml 
+		printf "  - ${line}\n">>config.yml 
 
 	done
 

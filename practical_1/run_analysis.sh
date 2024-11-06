@@ -8,18 +8,18 @@
 #SBATCH --mem=100M
 #SBATCH --account=SSCM033324
 
+cd "${SLURM_SUBMIT_DIR}"
+
 echo 'Setting up environment'
 
 source ~/initMamba.sh
 
 mamba activate ahds_week9
 
-cd ~/ahds_practical/conda-hpc-snakemake-example/
+mkdir -p ../results
+mkdir -p ../data/derived/
 
-mkdir -p results
-mkdir -p data/derived/
-
-cd setup/
+cd ../setup/
 
 Rscript 0_get_conditions.R
 
