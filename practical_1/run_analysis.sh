@@ -7,6 +7,8 @@
 #SBATCH --time=0:10:00
 #SBATCH --mem=100M
 #SBATCH --account=SSCM033324
+#SBATCH --output ./slurm_logs/%j.out
+
 
 cd "${SLURM_SUBMIT_DIR}"
 
@@ -16,6 +18,7 @@ source ~/initMamba.sh
 
 mamba activate ahds_week9
 
+mkdir -p ./slurm_logs/
 mkdir -p ../results
 mkdir -p ../data/derived/
 
