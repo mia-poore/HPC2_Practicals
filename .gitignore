@@ -1,3 +1,4 @@
 /results/
 config.yml
-.snakemake/
+**/slurm_logs
+**/derived
