@@ -27,7 +27,6 @@ rule:
 		"Rscript ../code/1_find_side_effects.R {wildcards.condition}"
 
 rule:
-	priority: -10
 	name:
 		"plot_{condition}"
 	input:
