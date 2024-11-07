@@ -50,7 +50,7 @@ results <- tibble('rank' = c(1:100),
 		  'word_frequency' = words$n,
                   'bigram' = bigrams$bigram,
 		  'bigram_frequency' = bigrams$n,) %>%
-           write_csv(paste('../data/derived/word_rankings_',
+           write_csv(paste('../data/derived/intermediate/word_rankings_',
                            CONDITION,'.csv',sep=''))
 
 

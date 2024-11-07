@@ -21,8 +21,4 @@ source make_config.sh
 
 mkdir -p slurm_logs
 
-srun snakemake -j4
-
-
-
-
+snakemake -j4

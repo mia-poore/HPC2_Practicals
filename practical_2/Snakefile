@@ -11,7 +11,8 @@ rule all:
 rule setup:
 	"setup"
 	shell:"""
-	mkdir results
+	mkdir -p ../results
+	mkdir -p ../data/derived/intermediate/ 
 	"""
 
 
@@ -21,7 +22,7 @@ rule:
 	input:
 		"../data/original/drugLibTrain_raw.tsv"
 	output:
-		"../data/derived/word_rankings_{condition}.csv"
+		"../data/derived/intermediate/word_rankings_{condition}.csv"
 	shell:
 		"Rscript ../code/1_find_side_effects.R {wildcards.condition}"
 
@@ -30,7 +31,7 @@ rule:
 	name:
 		"plot_{condition}"
 	input:
-		"../data/derived/word_rankings_{condition}.csv"
+		"../data/derived/intermediate/word_rankings_{condition}.csv"
 	output:
 		"../results/wordcloud_{condition}.png",
 		"../results/bigramcloud_{condition}.png"
@@ -40,6 +41,11 @@ rule:
 rule clean:
 	"Clean up"
 	shell:"""
+        if [ -d ../data/derived/intermediate ]; then
+        rm -r ../data/derived/intermediate
+        else
+                echo directory intermediate does not exist
+        fi
 	if [ -d ../results ]; then
 	rm -r ../results
 	else

@@ -20,7 +20,7 @@ mamba activate ahds_week9
 
 mkdir -p ./slurm_logs/
 mkdir -p ../results
-mkdir -p ../data/derived/
+mkdir -p ../data/derived/intermediate
 
 cd ../setup/
 

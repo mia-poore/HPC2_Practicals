@@ -7,7 +7,7 @@ args = 	commandArgs(trailingOnly = TRUE)
 CONDITION = args[1]
 
 #read in data
-dta <- 	read_csv(paste('../data/derived/word_rankings_',
+dta <- 	read_csv(paste('../data/derived/intermediate/word_rankings_',
 		      CONDITION,'.csv',sep=''))
 
 
