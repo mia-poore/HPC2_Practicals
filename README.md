@@ -46,24 +46,19 @@ You will now re-run the analysis using Snakemake. First, navigate to the root di
 
 ### Adapt the bash pipeline to work with snakemake
 
-Look at `practical_2/Snakefile`: this is a snakemake pipeline for the analysis.
+Look at `practical_2/Snakefile`: this is a snakemake workflow for the analysis.
 1. Compare this to the commands in `run_analysis.sh`. What commands aren't executed by the Snakefile?
 2. Execute snakemake with a dry run (`snakemake -n`) -- what error(s) do you see?
-3. *something about using setup/make_config.sh to create config. Could we make it so that it doesn't run / there is an error they need to fix?*
-4. Execute snakemake with a dry run again -- are all errors fixed? When ready, run on login node as a single job (`snakemake -j1`)
-
-### Submit snakemake workflow to the job queue
-
-Look at the submission scripts from practical 1. Try to adapt them for snakemake to:
-1. run the pipeline as a single job
-2. run the pipeline as an array job *hint: consider snakemake flags* 
+3. Look at `make_config.sh`: which parts of the pipeline are missing? Complete and execute.
+4. Run snakemake with a dry run again -- the errors should have gone. 
+5. Execute the snakemake workflow on the login node, timing how long it takes (`time snakemake -j1`)
 
 ### Run your workflow using a slurm profile
 
 1. Install the [snakemake executor plugin for slurm](https://snakemake.github.io/snakemake-plugin-catalog/plugins/executor/slurm.html)
-2. Create a slurm profile and save this in your config directory: `~./config/snakemake/<name_of_profile>/config.yaml`
+2. Create a slurm profile and save this in your config directory: `~./config/snakemake/slurm_profile/config.yaml`
 3. Clean your snakemake workflow (`snakemake -f clean`)
-4. Run your workflow using your profile: `snakemake --executor slurm --profile <name_of_profile>` 
+4. Run your workflow using your profile, timing it: `time snakemake --executor slurm --profile slurm_profile` 
 
 ## Things to consider
 
