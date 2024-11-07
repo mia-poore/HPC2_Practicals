@@ -1,8 +1,5 @@
 #!/bin/bash
 
-echo 'Setting up environment'
-
-source ~/initMamba.sh
 
 
 echo "CONDITIONS:" > config.yml
