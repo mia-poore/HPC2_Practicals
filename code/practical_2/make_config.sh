@@ -2,11 +2,11 @@
 
 
 
-echo "CONDITIONS:" > config.yml
+echo "CONDITIONS:" > ../config.yml
 {       read
         while IFS=, read -r line;
         do
-                printf "  - ${line}\n">>config.yml
+                printf "  - ${line}\n">>../config.yml
 
         done
 
