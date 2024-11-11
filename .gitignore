@@ -2,3 +2,4 @@
 config.yml
 **/slurm_logs
 **/derived
+/data/
