@@ -14,7 +14,7 @@ cd "${SLURM_SUBMIT_DIR}"
 
 echo 'Setting up environment'
 
-source ~/initMamba.sh
+source ~/initConda.sh
 
 mamba activate ahds_week9
 
@@ -36,5 +36,5 @@ echo 'Starting analysis'
                 Rscript 2_plot_wordcloud.R "${line}"
         done
 
-}< ../../data/derived/top_conditions.csv
+}< ../data/derived/top_conditions.csv
 
