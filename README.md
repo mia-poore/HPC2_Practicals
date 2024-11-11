@@ -1,122 +1,69 @@
 # conda-hpc-snakemake-example
 
-Files needed:
+-------------------------------
 
-- Snakefile
-- script1.R
-- script2.sh
-- environment.yaml
-- slurm_config.json
-- data/input.csv
+## Practical instructions
 
-Modules needed
+The pipeline in this repository analyses data collected from online reviews of prescribed medications.
 
-- mamba
-- git
+Specifically, it:
+1. Identifies the 4 most common conditions experienced by people writing reviews
+2. Finds words and bigrams used when describing the side effects of medications prescribed for each condition
+3. Plots wordclouds to visualise the most common words and bigrams used to describe the side effects associated with these medications
 
-Additional points
+## Practical 1: Conda on HPC
 
-- ssh keys
-- .bashrc files
-- file permissions
+### Setting up Git and Conda
 
+#### Git
+1. Log into bc4
+2. Add git module
+3. Setup ssh access for git
+4. Fork this repository
+5. Clone forked repository to home partition
+   
+#### Conda / Mamba
+1. Follow ACRC's instructions to install mamba on your work partition
+2. Navigate to cloned repository and create a conda environment from environment.yml
+3. Activate the conda environment
 
-Your tasks for this practical
+### Run analysis using a conda environment
 
-1. get into bc4
-2. add git module
-3. Fork this repository
-4. clone forked repository
-5. add mamba module
-6. create conda/mamba environment
-7. try running scripts / snakemake without submitting
-8. try submitting snakemake to hpc - look at previous hpc submission scripts and try to fix the parameters for snakemake. Note if you're making changes, consider raising an Issue in your forked github repository, creating a new branch, checking out that new branch and committing and pushing the changes there, then making a pull request.
-9. try submitting in tmux for longer running jobs
-10. Update the README.md to explain how to run your pipeline in different environments.
+Look at `practical_1/run_analysis.sh`: this is a sumbission script to run the pipeline on BlueCrystal. It does not make use of Snakemake.
 
-Formative
+1. Add comments to the submission script, describing what each step does
+2. Submit the submission script to the jobque
+3. Add, commit and push the results to git so that you can view the figures locally
+4. **extension** Edit the submission script to run as an array job
 
-1. Migrate current pipeline to run on HPC
-2. Can you parallelise the processing of the input files in a HPC batch array in this new pipeline configuration? Think about strategy here. How could `pre-pipeline-batching.R` help?
+## Practical 2: Snakemake on HPC
 
+You will now re-run the analysis using Snakemake. First, navigate to the root directory and clear all derived data and results:
 
-file1.txt
-file2.txt
-..
-file2000.txt
+`rm -r ./results/`
 
+`rm -r ./data/derived/`
 
-In R:
+### Adapt the bash pipeline to work with snakemake
 
-batch1.txt:
-  file1.txt
-  file2.txt
+Look at `practical_2/Snakefile`: this is a snakemake workflow for the analysis.
+1. Compare this to the commands in `run_analysis.sh`. What commands aren't executed by the Snakefile?
+2. Execute snakemake with a dry run (`snakemake -n`) -- what error(s) do you see?
+3. Look at `make_config.sh`: which parts of the pipeline are missing? Complete and execute.
+4. Run snakemake with a dry run again -- the errors should have gone. 
+5. Execute the snakemake workflow on the login node, timing how long it takes (`time snakemake -j1`)
 
-batch2.txt:
-  file3.txt
-  file4.txt
+### Run your workflow using a slurm profile
 
+1. Install the [snakemake executor plugin for slurm](https://snakemake.github.io/snakemake-plugin-catalog/plugins/executor/slurm.html)
+2. Create a slurm profile and save this in your config directory: `~./config/snakemake/slurm_profile/config.yaml`
+3. Clean your snakemake workflow (`snakemake clean`)
+4. Run your workflow using your profile, timing it: `time snakemake --executor slurm --profile slurm_profile` 
 
+## Things to consider
 
-Snakefile using pre-batch
+If you're making changes, consider raising an Issue in your forked github repository, creating a new branch, checking out that new branch and committing and pushing the changes there, then making a pull request.
 
-rule: process_1
-  input: "batch{batch}.txt"
-  output:
-    "processed{batch}.txt"
-  script:
-    something.r
-  conda:
-    
-
-rule: aggregate
-  input: expand("processed{batch}.txt", batch=range(1,100))
-  output:
-    "final.txt"
-  script:
-    "somethingelse.r"
-  conda:
-  
-  
-
-
-Snakefile using raw files
-
-rule: process_1
-  input: "file{sample}.txt"
-  output:
-    "processed{sample}.txt"
-  script:
-    something.r
-  conda:
-    
-
-rule: aggregate
-  input: expand("processed{sample}.txt", batch=range(1,100))
-  output:
-    "final.txt"
-  script:
-    "somethingelse.r"
-  conda:
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Once finished, you could update this README.md to explain how to run your pipeline in different environments.
 
 
