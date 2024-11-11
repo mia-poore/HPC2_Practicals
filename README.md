@@ -42,7 +42,7 @@ You will now re-run the analysis using Snakemake. First, navigate to the root di
 
 `rm -r ./results/`
 
-`rm -r ./data/derived/intermediates`
+`rm -r ./data/derived/`
 
 ### Adapt the bash pipeline to work with snakemake
 
