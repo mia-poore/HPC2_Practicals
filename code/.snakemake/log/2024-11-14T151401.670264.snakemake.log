@@ -1,0 +1,29 @@
+host: bc4login2
+Building DAG of jobs...
+SLURM run ID: 79951c0c-89b8-4ba6-984a-d72dbe3b520c
+Using shell: /usr/bin/bash
+Provided remote nodes: 1
+Job stats:
+job                         count
+------------------------  -------
+all                             1
+plot_{condition}                4
+side_effects_{condition}        4
+total                           9
+
+Select jobs to execute...
+Execute 1 jobs...
+
+[Thu Nov 14 15:14:01 2024]
+rule side_effects_{condition}:
+    input: ../data/original/drugLibTrain_raw.tsv
+    output: ../data/derived/intermediate/word_rankings_acne.csv
+    jobid: 4
+    reason: Missing output files: ../data/derived/intermediate/word_rankings_acne.csv
+    wildcards: condition=acne
+    resources: mem_mb=100, mem_mib=96, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, slurm_partition=teach_cpu, slurm_account=SSCM033324, runtime=10, ntasks=1, nodes=1
+
+Rscript 1_find_side_effects.R acne
+WorkflowError:
+The given account SSCM033324 appears to be invalid. Available accounts:
+sscm033324, default

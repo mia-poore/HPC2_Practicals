@@ -1,0 +1,163 @@
+host: bc4login2
+Building DAG of jobs...
+SLURM run ID: 00d3e03a-02e4-4979-b06f-34f6e69a68d9
+Using shell: /usr/bin/bash
+Provided remote nodes: 1
+Job stats:
+job                         count
+------------------------  -------
+all                             1
+plot_{condition}                4
+side_effects_{condition}        4
+total                           9
+
+Select jobs to execute...
+Execute 1 jobs...
+
+[Thu Nov 14 15:18:29 2024]
+rule side_effects_{condition}:
+    input: ../data/original/drugLibTrain_raw.tsv
+    output: ../data/derived/intermediate/word_rankings_acne.csv
+    jobid: 4
+    reason: Missing output files: ../data/derived/intermediate/word_rankings_acne.csv
+    wildcards: condition=acne
+    resources: mem_mb=100, mem_mib=96, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, slurm_partition=teach_cpu, slurm_account=sscm033324, runtime=10, ntasks=1, nodes=1
+
+Rscript 1_find_side_effects.R acne
+Job 4 has been submitted with SLURM jobid 10705508 (log: /user/home/jo24086/HPC2_Practicals/Git_Conda/HPC2_Practicals/code/.snakemake/slurm_logs/rule_side_effects_{condition}/acne/10705508.log).
+[Thu Nov 14 15:19:10 2024]
+Finished job 4.
+1 of 9 steps (11%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Thu Nov 14 15:19:10 2024]
+rule side_effects_{condition}:
+    input: ../data/original/drugLibTrain_raw.tsv
+    output: ../data/derived/intermediate/word_rankings_depression.csv
+    jobid: 2
+    reason: Missing output files: ../data/derived/intermediate/word_rankings_depression.csv
+    wildcards: condition=depression
+    resources: mem_mb=100, mem_mib=96, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, slurm_partition=teach_cpu, slurm_account=sscm033324, runtime=10, ntasks=1, nodes=1
+
+Rscript 1_find_side_effects.R depression
+Job 2 has been submitted with SLURM jobid 10705509 (log: /user/home/jo24086/HPC2_Practicals/Git_Conda/HPC2_Practicals/code/.snakemake/slurm_logs/rule_side_effects_{condition}/depression/10705509.log).
+[Thu Nov 14 15:19:40 2024]
+Finished job 2.
+2 of 9 steps (22%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Thu Nov 14 15:19:40 2024]
+rule side_effects_{condition}:
+    input: ../data/original/drugLibTrain_raw.tsv
+    output: ../data/derived/intermediate/word_rankings_anxiety.csv
+    jobid: 6
+    reason: Missing output files: ../data/derived/intermediate/word_rankings_anxiety.csv
+    wildcards: condition=anxiety
+    resources: mem_mb=100, mem_mib=96, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, slurm_partition=teach_cpu, slurm_account=sscm033324, runtime=10, ntasks=1, nodes=1
+
+Rscript 1_find_side_effects.R anxiety
+Job 6 has been submitted with SLURM jobid 10705510 (log: /user/home/jo24086/HPC2_Practicals/Git_Conda/HPC2_Practicals/code/.snakemake/slurm_logs/rule_side_effects_{condition}/anxiety/10705510.log).
+[Thu Nov 14 15:20:10 2024]
+Finished job 6.
+3 of 9 steps (33%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Thu Nov 14 15:20:10 2024]
+rule side_effects_{condition}:
+    input: ../data/original/drugLibTrain_raw.tsv
+    output: ../data/derived/intermediate/word_rankings_insomnia.csv
+    jobid: 8
+    reason: Missing output files: ../data/derived/intermediate/word_rankings_insomnia.csv
+    wildcards: condition=insomnia
+    resources: mem_mb=100, mem_mib=96, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, slurm_partition=teach_cpu, slurm_account=sscm033324, runtime=10, ntasks=1, nodes=1
+
+Rscript 1_find_side_effects.R insomnia
+Job 8 has been submitted with SLURM jobid 10705514 (log: /user/home/jo24086/HPC2_Practicals/Git_Conda/HPC2_Practicals/code/.snakemake/slurm_logs/rule_side_effects_{condition}/insomnia/10705514.log).
+[Thu Nov 14 15:20:40 2024]
+Finished job 8.
+4 of 9 steps (44%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Thu Nov 14 15:20:40 2024]
+rule plot_{condition}:
+    input: ../data/derived/intermediate/word_rankings_depression.csv
+    output: ../results/wordcloud_depression.png, ../results/bigramcloud_depression.png
+    jobid: 1
+    reason: Missing output files: ../results/bigramcloud_depression.png, ../results/wordcloud_depression.png; Input files updated by another job: ../data/derived/intermediate/word_rankings_depression.csv
+    wildcards: condition=depression
+    resources: mem_mb=100, mem_mib=96, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, slurm_partition=teach_cpu, slurm_account=sscm033324, runtime=10, ntasks=1, nodes=1
+
+Rscript 2_plot_wordcloud.R depression
+Job 1 has been submitted with SLURM jobid 10705517 (log: /user/home/jo24086/HPC2_Practicals/Git_Conda/HPC2_Practicals/code/.snakemake/slurm_logs/rule_plot_{condition}/depression/10705517.log).
+[Thu Nov 14 15:21:10 2024]
+Finished job 1.
+5 of 9 steps (56%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Thu Nov 14 15:21:10 2024]
+rule plot_{condition}:
+    input: ../data/derived/intermediate/word_rankings_anxiety.csv
+    output: ../results/wordcloud_anxiety.png, ../results/bigramcloud_anxiety.png
+    jobid: 5
+    reason: Missing output files: ../results/bigramcloud_anxiety.png, ../results/wordcloud_anxiety.png; Input files updated by another job: ../data/derived/intermediate/word_rankings_anxiety.csv
+    wildcards: condition=anxiety
+    resources: mem_mb=100, mem_mib=96, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, slurm_partition=teach_cpu, slurm_account=sscm033324, runtime=10, ntasks=1, nodes=1
+
+Rscript 2_plot_wordcloud.R anxiety
+Job 5 has been submitted with SLURM jobid 10705522 (log: /user/home/jo24086/HPC2_Practicals/Git_Conda/HPC2_Practicals/code/.snakemake/slurm_logs/rule_plot_{condition}/anxiety/10705522.log).
+[Thu Nov 14 15:21:41 2024]
+Finished job 5.
+6 of 9 steps (67%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Thu Nov 14 15:21:41 2024]
+rule plot_{condition}:
+    input: ../data/derived/intermediate/word_rankings_insomnia.csv
+    output: ../results/wordcloud_insomnia.png, ../results/bigramcloud_insomnia.png
+    jobid: 7
+    reason: Missing output files: ../results/wordcloud_insomnia.png, ../results/bigramcloud_insomnia.png; Input files updated by another job: ../data/derived/intermediate/word_rankings_insomnia.csv
+    wildcards: condition=insomnia
+    resources: mem_mb=100, mem_mib=96, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, slurm_partition=teach_cpu, slurm_account=sscm033324, runtime=10, ntasks=1, nodes=1
+
+Rscript 2_plot_wordcloud.R insomnia
+Job 7 has been submitted with SLURM jobid 10705523 (log: /user/home/jo24086/HPC2_Practicals/Git_Conda/HPC2_Practicals/code/.snakemake/slurm_logs/rule_plot_{condition}/insomnia/10705523.log).
+[Thu Nov 14 15:22:11 2024]
+Finished job 7.
+7 of 9 steps (78%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Thu Nov 14 15:22:11 2024]
+rule plot_{condition}:
+    input: ../data/derived/intermediate/word_rankings_acne.csv
+    output: ../results/wordcloud_acne.png, ../results/bigramcloud_acne.png
+    jobid: 3
+    reason: Missing output files: ../results/wordcloud_acne.png, ../results/bigramcloud_acne.png; Input files updated by another job: ../data/derived/intermediate/word_rankings_acne.csv
+    wildcards: condition=acne
+    resources: mem_mb=100, mem_mib=96, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, slurm_partition=teach_cpu, slurm_account=sscm033324, runtime=10, ntasks=1, nodes=1
+
+Rscript 2_plot_wordcloud.R acne
+Job 3 has been submitted with SLURM jobid 10705529 (log: /user/home/jo24086/HPC2_Practicals/Git_Conda/HPC2_Practicals/code/.snakemake/slurm_logs/rule_plot_{condition}/acne/10705529.log).
+[Thu Nov 14 15:22:41 2024]
+Finished job 3.
+8 of 9 steps (89%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Thu Nov 14 15:22:41 2024]
+localrule all:
+    input: ../results/wordcloud_depression.png, ../results/wordcloud_acne.png, ../results/wordcloud_anxiety.png, ../results/wordcloud_insomnia.png, ../results/bigramcloud_depression.png, ../results/bigramcloud_acne.png, ../results/bigramcloud_anxiety.png, ../results/bigramcloud_insomnia.png
+    jobid: 0
+    reason: Input files updated by another job: ../results/bigramcloud_acne.png, ../results/wordcloud_insomnia.png, ../results/bigramcloud_insomnia.png, ../results/wordcloud_depression.png, ../results/bigramcloud_anxiety.png, ../results/wordcloud_anxiety.png, ../results/wordcloud_acne.png, ../results/bigramcloud_depression.png
+    resources: mem_mb=100, mem_mib=96, disk_mb=1000, disk_mib=954, tmpdir=/tmp, slurm_partition=teach_cpu, slurm_account=sscm033324, runtime=10, ntasks=1, nodes=1
+
+[Thu Nov 14 15:22:41 2024]
+Finished job 0.
+9 of 9 steps (100%) done
+Complete log: .snakemake/log/2024-11-14T151829.768012.snakemake.log
